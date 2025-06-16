@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
+import { userAPI } from "../../assets/services/userAPI"; // ← Sesuaikan path import
 
 export default function Login() {
   const navigate = useNavigate();
@@ -22,40 +22,39 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
+  e.preventDefault();
+  setLoading(true);
+  setError("");
 
-    try {
-      const response = await axios.post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
-        password: dataForm.password,
-      });
+  try {
+    const result = await userAPI.fetchUser(dataForm.email, dataForm.password);
 
-      if (response.status !== 200) {
-        setError(response.data.message || "Login failed");
-        return;
+    if (result.length === 0) {
+      setError("Email atau password salah.");
+    } else {
+      const user = result[0]; // ambil user pertama
+      if (user.role === "admin") {
+        navigate("/dashboard");
+      } else if (user.role === "customer") {
+        navigate("/");
+      } else {
+        setError(`Role "${user.role}" tidak valid.`);
       }
-
-      navigate("/");
-    } catch (err) {
-      setError(
-        err.response?.data?.message || err.message || "An unknown error occurred"
-      );
-    } finally {
-      setLoading(false);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    setError("Login gagal. Pastikan API aktif dan data benar.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
-    <div className="bg-white p-8 rounded-2xl  w-full max-w-sm">
-      <h2 className="text-2xl font-bold text-black mb-2">
-                Login
-            </h2>
-            
-            <p className="text-sm text-gray-500 mb-6 ">
-                Masuk ke akun anda.
-            </p>
+    <div className="bg-white p-8 rounded-2xl w-full max-w-sm">
+      <h2 className="text-2xl font-bold text-black mb-2">Login</h2>
+      <p className="text-sm text-gray-500 mb-6">Masuk ke akun anda.</p>
+
       {error && (
         <div className="bg-red-100 text-red-700 p-3 rounded flex items-center mb-4 text-sm">
           <BsFillExclamationDiamondFill className="mr-2" />
@@ -72,15 +71,15 @@ export default function Login() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm text-gray-700 mb-1">Username</label>
+          <label className="block text-sm text-gray-700 mb-1">Email</label>
           <input
-            type="text"
+            type="email"
             name="email"
-            placeholder="Enter your username"
             value={dataForm.email}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Masukkan email"
+            className="w-full px-4 py-2 rounded bg-gray-100 text-gray-800"
           />
         </div>
 
@@ -89,11 +88,11 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            placeholder="Enter your password"
             value={dataForm.password}
             onChange={handleChange}
             required
-            className="w-full px-4 py-2 rounded bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-teal-300"
+            placeholder="Masukkan password"
+            className="w-full px-4 py-2 rounded bg-gray-100 text-gray-800"
           />
         </div>
 
@@ -103,7 +102,7 @@ export default function Login() {
             onClick={() => navigate("/forgot")}
             className="hover:underline"
           >
-            Forgot Password?
+            Lupa Password?
           </button>
         </div>
 
@@ -116,12 +115,12 @@ export default function Login() {
       </form>
 
       <div className="mt-4 text-center text-sm text-gray-600">
-        New to Beutiva?{" "}
+        Belum punya akun?{" "}
         <button
           onClick={() => navigate("/register")}
           className="text-teal-600 font-semibold hover:underline"
         >
-          Register Here
+          Daftar di sini
         </button>
       </div>
     </div>
