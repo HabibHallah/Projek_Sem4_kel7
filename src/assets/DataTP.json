@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Toner",
+    "price": 78000,
+    "image": "./img/produk1.png"
+  },
+  {
+    "id": 2,
+    "name": "Serum Pelembab",
+    "price": 34000,
+    "image": "./img/produk2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Sun Screen",
+    "price": 14500,
+    "image": "./img/produk3.jpeg"
+  }
+]

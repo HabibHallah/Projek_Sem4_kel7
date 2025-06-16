@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+ body {
+    @apply font-barlow;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url('/fonts/Barlow/Barlow-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-Regular.ttf')
+}
+
+@font-face{
+    font-family: 'Poppins';
+    src: url('/fonts/Poppins-ExtraBold.ttf')
+}
+@theme {
+    --font-barlow: "Barlow", sans-serif;
+    --font-poppins: "Poppins", sans-serif;
+    --font-poppins-extrabold: "Poppins", sans-serif;
+    --color-latar: #f3f4f6;
+    --color-teks: #374151; 
+    --color-teks-samping: #6b7280;
+    --color-garis: #e5e7eb; 
+    --color-hijau: #00B074; 
+    --color-merah: #ef4444; 
+    --color-biru: #3b82f6;
+    --color-kuning: #f59e0b;  
+ }
+
+@keyframes blob {
+  0%, 100% {
+    transform: scale(1);
+    border-radius: 40% 60% 30% 70%;
+  }
+  50% {
+    transform: scale(1.1);
+    border-radius: 60% 30% 70% 40%;
+  }
+}
+.animate-blob {
+  animation: blob 8s infinite;
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Don",
+    "avatar": "https://avatar.iran.liara.run/public/1",
+    "review": "Produknya bagus banget, bikin kulit jadi lebih cerah dan lembut!"
+  },
+  {
+    "id": 2,
+    "name": "Rizky Hidayat",
+    "avatar": "https://avatar.iran.liara.run/public/2",
+    "review": "Aku puas banget sama hasilnya, cocok untuk kulit sensitif dan wanginya juga enak!"
+  },
+  {
+    "id": 3,
+    "name": "Gatot Subroto",
+    "avatar": "https://avatar.iran.liara.run/public/3",
+    "review": "Pelayanannya cepat, produknya asli dan bikin wajah terlihat lebih segar!"
+  },
+  {
+    "id": 4,
+    "name": "Fajar Maulana",
+    "avatar": "https://avatar.iran.liara.run/public/4",
+    "review": "Harganya terjangkau tapi kualitasnya premium, cocok banget buat daily skincare!"
+  },
+  {
+    "id": 5,
+    "name": "Putra Subhan",
+    "avatar": "https://avatar.iran.liara.run/public/5",
+    "review": "Aku udah beli berkali-kali, kulitku jadi lebih glowing dan sehat. Recommended!"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "member_id": 1,
+    "nama": "Andi Wijaya",
+    "email": "andi.wijaya@example.com",
+    "tipe_member": "gold"
+  },
+  {
+    "member_id": 2,
+    "nama": "Budi Santoso",
+    "email": "budi.santoso@example.com",
+    "tipe_member": "silver"
+  },
+  {
+    "member_id": 3,
+    "nama": "Citra Lestari",
+    "email": "citra.lestari@example.com",
+    "tipe_member": "platinum"
+  },
+  {
+    "member_id": 4,
+    "nama": "Dewi Kartini",
+    "email": "dewi.kartini@example.com",
+    "tipe_member": "silver"
+  },
+  {
+    "member_id": 5,
+    "nama": "Eko Prasetyo",
+    "email": "eko.prasetyo@example.com",
+    "tipe_member": "gold"
+  }
+]

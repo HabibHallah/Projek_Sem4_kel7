@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "name": "Lipstick Matte Merah",
+    "price": 85000,
+    "stock": 20,
+    "image": "https://via.placeholder.com/80?text=Lipstick"
+  },
+  {
+    "id": 2,
+    "name": "Foundation Cair Natural",
+    "price": 120000,
+    "stock": 15,
+    "image": "https://via.placeholder.com/80?text=Foundation"
+  },
+  {
+    "id": 3,
+    "name": "Bedak Tabur Light Beige",
+    "price": 95000,
+    "stock": 25,
+    "image": "https://via.placeholder.com/80?text=Powder"
+  },
+  {
+    "id": 4,
+    "name": "Blush On Pink Rose",
+    "price": 68000,
+    "stock": 30,
+    "image": "https://via.placeholder.com/80?text=Blush"
+  },
+  {
+    "id": 5,
+    "name": "Maskara Volume Black",
+    "price": 78000,
+    "stock": 18,
+    "image": "https://via.placeholder.com/80?text=Mascara"
+  },
+  {
+    "id": 6,
+    "name": "Eyeliner Cair Hitam",
+    "price": 69000,
+    "stock": 22,
+    "image": "https://via.placeholder.com/80?text=Eyeliner"
+  },
+  {
+    "id": 7,
+    "name": "Eyeshadow Palet Nude",
+    "price": 110000,
+    "stock": 12,
+    "image": "https://via.placeholder.com/80?text=Eyeshadow"
+  },
+  {
+    "id": 8,
+    "name": "Pelembap Wajah Aloe Vera",
+    "price": 56000,
+    "stock": 35,
+    "image": "https://via.placeholder.com/80?text=Moisturizer"
+  },
+  {
+    "id": 9,
+    "name": "Serum Vitamin C",
+    "price": 135000,
+    "stock": 10,
+    "image": "https://via.placeholder.com/80?text=Serum"
+  },
+  {
+    "id": 10,
+    "name": "Toner Whitening",
+    "price": 75000,
+    "stock": 28,
+    "image": "https://via.placeholder.com/80?text=Toner"
+  },
+  {
+    "id": 11,
+    "name": "Face Mist Refreshing",
+    "price": 64000,
+    "stock": 32,
+    "image": "https://via.placeholder.com/80?text=Mist"
+  },
+  {
+    "id": 12,
+    "name": "Cleansing Oil",
+    "price": 98000,
+    "stock": 14,
+    "image": "https://via.placeholder.com/80?text=Cleansing"
+  },
+  {
+    "id": 13,
+    "name": "Makeup Remover Wipes",
+    "price": 45000,
+    "stock": 40,
+    "image": "https://via.placeholder.com/80?text=Remover"
+  },
+  {
+    "id": 14,
+    "name": "BB Cream Light",
+    "price": 88000,
+    "stock": 26,
+    "image": "https://via.placeholder.com/80?text=BB+Cream"
+  },
+  {
+    "id": 15,
+    "name": "CC Cream Natural",
+    "price": 93000,
+    "stock": 19,
+    "image": "https://via.placeholder.com/80?text=CC+Cream"
+  },
+  {
+    "id": 16,
+    "name": "Highlighter Shimmer",
+    "price": 72000,
+    "stock": 20,
+    "image": "https://via.placeholder.com/80?text=Highlighter"
+  },
+  {
+    "id": 17,
+    "name": "Contour Stick",
+    "price": 67000,
+    "stock": 17,
+    "image": "https://via.placeholder.com/80?text=Contour"
+  },
+  {
+    "id": 18,
+    "name": "Setting Spray",
+    "price": 79000,
+    "stock": 21,
+    "image": "https://via.placeholder.com/80?text=Setting"
+  },
+  {
+    "id": 19,
+    "name": "Lip Balm Cherry",
+    "price": 32000,
+    "stock": 38,
+    "image": "https://via.placeholder.com/80?text=Lip+Balm"
+  },
+  {
+    "id": 20,
+    "name": "Lip Tint Red Velvet",
+    "price": 58000,
+    "stock": 29,
+    "image": "https://via.placeholder.com/80?text=Tint"
+  },
+  {
+    "id": 21,
+    "name": "Facial Wash Gentle",
+    "price": 52000,
+    "stock": 34,
+    "image": "https://via.placeholder.com/80?text=Face+Wash"
+  },
+  {
+    "id": 22,
+    "name": "Clay Mask Detox",
+    "price": 87000,
+    "stock": 16,
+    "image": "https://via.placeholder.com/80?text=Mask"
+  },
+  {
+    "id": 23,
+    "name": "Nail Polish Nude Pink",
+    "price": 27000,
+    "stock": 45,
+    "image": "https://via.placeholder.com/80?text=Nail"
+  },
+  {
+    "id": 24,
+    "name": "Hand Cream Rose",
+    "price": 39000,
+    "stock": 36,
+    "image": "https://via.placeholder.com/80?text=Hand+Cream"
+  },
+  {
+    "id": 25,
+    "name": "Eyebrow Pencil Brown",
+    "price": 49000,
+    "stock": 23,
+    "image": "https://via.placeholder.com/80?text=Eyebrow"
+  },
+  {
+    "id": 26,
+    "name": "Lip Gloss Shine",
+    "price": 61000,
+    "stock": 24,
+    "image": "https://via.placeholder.com/80?text=Gloss"
+  },
+  {
+    "id": 27,
+    "name": "Makeup Brush Set",
+    "price": 150000,
+    "stock": 10,
+    "image": "https://via.placeholder.com/80?text=Brush"
+  },
+  {
+    "id": 28,
+    "name": "Sunscreen SPF 50",
+    "price": 99000,
+    "stock": 30,
+    "image": "https://via.placeholder.com/80?text=Sunscreen"
+  },
+  {
+    "id": 29,
+    "name": "Face Roller Jade",
+    "price": 89000,
+    "stock": 13,
+    "image": "https://via.placeholder.com/80?text=Roller"
+  },
+  {
+    "id": 30,
+    "name": "Hair Serum Glossy",
+    "price": 78000,
+    "stock": 22,
+    "image": "https://via.placeholder.com/80?text=Hair"
+  }
+]
