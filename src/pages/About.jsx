@@ -1,74 +1,6 @@
-import React, { useRef } from "react";
-import {
-  animate,
-  motion,
-  useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-} from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
-// Mask scroll
-function useScrollOverflowMask(scrollXProgress) {
-  const maskImage = useMotionValue(
-    `linear-gradient(90deg, #000, #000 0%, #000 80%, #0000)`
-  );
-
-  useMotionValueEvent(scrollXProgress, "change", (value) => {
-    if (value === 0) {
-      animate(maskImage, `linear-gradient(90deg, #000, #000 0%, #000 80%, #0000)`);
-    } else if (value === 1) {
-      animate(maskImage, `linear-gradient(90deg, #0000, #000 20%, #000 100%, #000)`);
-    } else if (
-      scrollXProgress.getPrevious() === 0 ||
-      scrollXProgress.getPrevious() === 1
-    ) {
-      animate(maskImage, `linear-gradient(90deg, #0000, #000 20%, #000 80%, #0000)`);
-    }
-  });
-
-  return maskImage;
-}
-
-// Galeri component
-function GaleriMotion() {
-  const ref = useRef(null);
-  const { scrollXProgress } = useScroll({ container: ref });
-  const maskImage = useScrollOverflowMask(scrollXProgress);
-
-  const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
-
-  return (
-    <motion.section
-      className="max-w-6xl mx-auto my-16 px-4"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    >
-      <h2 className="text-2xl font-bold text-[#D10373] mb-8 text-center">Galeri Kami</h2>
-
-      <div ref={ref} className="overflow-x-auto overflow-y-hidden" style={{ WebkitOverflowScrolling: "touch" }}>
-        <motion.ul style={{ maskImage }} className="flex flex-nowrap space-x-4 w-max">
-          {images.map((img, i) => (
-            <motion.li
-              key={i}
-              className="min-w-[250px] h-[200px] flex-shrink-0 rounded-xl overflow-hidden shadow-lg"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src={`/images/galeri/${img}`}
-                alt={`Galeri ${i + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </motion.li>
-          ))}
-        </motion.ul>
-      </div>
-    </motion.section>
-  );
-}
-
-// About page
 export default function About() {
   return (
     <div className="min-h-screen font-sans text-gray-800 p-8">
@@ -84,7 +16,7 @@ export default function About() {
           Tentang <span className="text-[#CC21CC]">Beautiva</span>
         </h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Mewujudkan kecantikan alami melalui produk kosmetik premium, aman, dan&nbsp;berkepedulian.
+          Mewujudkan kecantikan alami melalui produk kosmetik premium, aman, dan berkepedulian.
         </p>
         <div className="absolute inset-0 flex justify-center items-end pointer-events-none">
           <svg className="w-64 h-24 opacity-20" viewBox="0 0 200 20">
@@ -160,7 +92,7 @@ export default function About() {
         <h2 className="text-2xl font-bold text-[#D10373] mb-4 text-center">Misi & Nilai Kami</h2>
         <div className="space-y-4">
           {[
-            { title: "Alami & Vegan", desc: "Menggunakan bahan-bahan alami dan formula vegan-friendly." },
+            { title: "Alami & Vegan", desc: "Menggunakan bahan-bahan alami dan formula vegan‑friendly." },
             { title: "Ramah Lingkungan", desc: "Kemasan ramah lingkungan dan proses yang berkelanjutan." },
             { title: "Untuk Semua", desc: "Diformulasikan agar aman dan cocok untuk semua jenis kulit." },
           ].map((v, i) => (
@@ -182,11 +114,11 @@ export default function About() {
         </div>
       </motion.section>
 
-      {/* CTA */}
+      {/* CTA Footer */}
       <motion.footer
-        className="mt-16 text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        className="mt-8 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
       >
