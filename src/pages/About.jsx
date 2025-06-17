@@ -7,8 +7,6 @@ import {
   useScroll,
 } from "framer-motion";
 
-import GaleriCosmetic from "../components/GaleriCosmetic";
-
 // Mask scroll
 function useScrollOverflowMask(scrollXProgress) {
   const maskImage = useMotionValue(
