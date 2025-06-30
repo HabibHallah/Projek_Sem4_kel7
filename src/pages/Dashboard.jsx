@@ -1,118 +1,133 @@
-import { HiBell } from "react-icons/hi";
-import { RiDashboardFill } from "react-icons/ri";
-import { AiFillHeart } from "react-icons/ai";
-import { MdSubscriptions } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { useEffect, useState } from "react";
+import { productAPI } from "../assets/services/productAPI";
+import { orderAPI } from "../assets/services/orderAPI";
+import { userAPI } from "../assets/services/userAPI";
+import { testimoniAPI } from "../assets/services/testimoniAPI";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+
 
 export default function Dashboard() {
-  const [membersCount, setMembersCount] = useState(0);
-  const [productsCount, setProductsCount] = useState(0);
-  const [usersCount, setUsersCount] = useState(0);
-  const [ordersCount, setOrdersCount] = useState(0);
-  const [members, setMembers] = useState([]);
+  const [testimoni, setTestimoni] = useState([]);
   const [page, setPage] = useState(0);
   const perPage = 4;
 
+  const [productsCount, setProductsCount] = useState(0);
+  const [ordersCount, setOrdersCount] = useState(0);
+  const [usersCount, setUsersCount] = useState(0);
+  const [testimoniCount, setTestimoniCount] = useState(0);
+
   useEffect(() => {
-    fetch("/data/members.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setMembers(data);
-        setMembersCount(data.length);
-      })
-      .catch(console.error);
+    const loadData = async () => {
+      try {
+        // Fetch data testimoni
+        const { data: testimoniData, total: totalTestimoni } = await testimoniAPI.fetchTestimoni(page * perPage, perPage);
+        setTestimoni(testimoniData);
+        setTestimoniCount(totalTestimoni);
 
-    fetch("/data/Product.json")
-      .then((res) => res.json())
-      .then((data) => setProductsCount(data.length))
-      .catch(console.error);
+        // Fetch total products
+        const allProducts = await productAPI.fetchProducts();
+        setProductsCount(allProducts.length);
 
-    fetch("https://dummyjson.com/users")
-      .then((res) => res.json())
-      .then((data) => setUsersCount(data.users.length))
-      .catch(console.error);
+        // Fetch total orders
+        const { total: totalOrders } = await orderAPI.fetchOrders(0, 1);
+        setOrdersCount(totalOrders);
 
-    fetch("/data/orders.json")
-      .then((res) => res.json())
-      .then((data) => setOrdersCount(data.length))
-      .catch(console.error);
-  }, []);
+        // Fetch total users
+        const { total: totalUsers } = await userAPI.fetchUsers(0, 1);
+        setUsersCount(totalUsers);
 
-  const totalPages = Math.ceil(members.length / perPage);
-  const slice = members.slice(page * perPage, page * perPage + perPage);
+      } catch (error) {
+        console.error("Gagal memuat data:", error);
+      }
+    };
 
-  const tierColor = (tier) => {
-    if (tier === "Gold") return "text-orange-500";
-    if (tier === "Silver") return "text-blue-500";
-    return "text-gray-500";
-  };
+    loadData();
+  }, [page]);
+
+  const totalPages = Math.ceil(testimoniCount / perPage);
 
   const stats = [
-    { title: "Members", value: membersCount, change: "+5%" },
-    { title: "Product", value: productsCount, change: "+8%" },
+    { title: "Testimoni", value: testimoniCount, change: "+5%" },
+    { title: "Products", value: productsCount, change: "+8%" },
     { title: "Users", value: usersCount, change: "+3%" },
     { title: "Orders", value: ordersCount, change: "-1%" },
   ];
 
+  const [orderData, setOrderData] = useState([]);
+  const [topProducts, setTopProducts] = useState([]);
+
+  useEffect(() => {
+    const loadTopProducts = async () => {
+      try {
+        const { data: orders } = await orderAPI.fetchOrders(0, 1000); // ambil banyak orders
+        const products = await productAPI.fetchProducts();
+
+        // hitung frekuensi produk_id
+        const freq = {};
+        orders.forEach(order => {
+          freq[order.produk_id] = (freq[order.produk_id] || 0) + 1;
+        });
+
+        // ubah ke array
+        let freqArray = Object.entries(freq).map(([produk_id, count]) => ({
+          produk_id: parseInt(produk_id),
+          count
+        }));
+
+        // sort desc dan ambil top 5
+        freqArray = freqArray.sort((a,b) => b.count - a.count).slice(0,5);
+
+        // total untuk persen
+        const totalOrders = orders.length;
+
+        // map ke nama produk & persen
+        const chartData = freqArray.map(item => {
+          const prod = products.find(p => p.id === item.produk_id);
+          return {
+            name: prod?.nama || `Produk ${item.produk_id}`,
+            percent: ((item.count / totalOrders) * 100).toFixed(2)
+          };
+        });
+
+        setTopProducts(chartData);
+      } catch (err) {
+        console.error("Gagal memuat data top products:", err);
+      }
+    };
+
+    loadTopProducts();
+  }, []);
+
   return (
     <div className="flex min-h-screen font-sans">
       <main className="flex-1 p-8">
-        {/* Top Members */}
+        {/* Grafik Pesanan */}
         <section className="bg-white p-6 rounded-2xl shadow mb-6">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold">Top Members</h3>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => setPage((p) => Math.max(p - 1, 0))}
-                disabled={page === 0}
-                className="px-2 py-1 rounded hover:bg-gray-100 disabled:opacity-50"
+          <h3 className="text-lg font-semibold mb-4">Top 5 Produk Paling Sering Dibeli</h3>
+          <div style={{ width: '100%', height: 300 }}>
+            <ResponsiveContainer>
+              <BarChart
+                data={topProducts}
+                margin={{ top: 5, right: 20, left: 0, bottom: 5 }}
               >
-                ‹
-              </button>
-              <span className="text-sm text-gray-600">
-                {page + 1} / {totalPages}
-              </span>
-              <button
-                onClick={() => setPage((p) => Math.min(p + 1, totalPages - 1))}
-                disabled={page === totalPages - 1}
-                className="px-2 py-1 rounded hover:bg-gray-100 disabled:opacity-50"
-              >
-                ›
-              </button>
-            </div>
-          </div>
+                <defs>
+                  <linearGradient id="gradientColor" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#E56AB3" />
+                    <stop offset="100%" stopColor="#FFC3CB" />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis unit="%" />
+                <Tooltip />
+                <Bar dataKey="percent" fill="url(#gradientColor)" />
+              </BarChart>
 
-          <div className="space-y-4">
-            {slice.map((m) => (
-              <div
-                key={m["Member ID"]}
-                className="grid grid-cols-1 sm:grid-cols-6 items-center gap-4"
-              >
-                <div className="col-span-1 sm:col-span-2 flex items-center space-x-4">
-                  <div>
-                    <p className="font-semibold">{m["Member Name"]}</p>
-                    <p className="text-xs text-gray-500">{m.Email}</p>
-                  </div>
-                </div>
-                <p className="col-span-1 sm:col-span-1 text-center">
-                  {m["Member ID"]}
-                </p>
-                <p className="col-span-1 sm:col-span-1 text-center">
-                  {m.Phone}
-                </p>
-                <p
-                  className={`col-span-1 sm:col-span-1 text-center font-semibold ${tierColor(
-                    m.Loyalty
-                  )}`}
-                >
-                  {m.Loyalty}
-                </p>
-                <BsThreeDotsVertical className="col-span-1 justify-self-end text-gray-400 cursor-pointer" />
-              </div>
-            ))}
+            </ResponsiveContainer>
           </div>
         </section>
+
 
         {/* Stats */}
         <section className="grid md:grid-cols-4 gap-4 mb-6">

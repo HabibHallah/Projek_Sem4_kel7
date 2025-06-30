@@ -22,6 +22,13 @@ const Topproduct = React.lazy(() => import("./pages/Topproduct"));
 const Testimoni = React.lazy(() => import("./pages/Testimoni"));
 const LandingPage = React.lazy(() => import("./pages/LandingPage"));
 const Product = React.lazy(() => import("./pages/Product"));
+const TestimoniMan = React.lazy(() => import("./pages/TestimoniMan"));
+const Artikel = React.lazy(() => import('./pages/Artikel'));
+const ArtikelHome = React.lazy(() => import('./pages/ArtikelHome'));
+const FaqAdmin = React.lazy(() => import('./pages/FaqAdmin'));
+const Faq = React.lazy(() => import('./pages/Faq'));
+const Katalog = React.lazy(() => import('./pages/Katalog'));
+const Wishlist = React.lazy(() => import('./pages/Wishlist'));
 
 function App() {
   return (
@@ -36,6 +43,11 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/Topproduct" element={<Topproduct />} />
             <Route path="/Testimoni" element={<Testimoni />} />
+            <Route path="/artikel-home" element={<ArtikelHome />} />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/katalog" element={<Katalog />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+
           </Route>
           <Route element={<AuthLayout />}>
             <Route path="/login" element={<Login />} />
@@ -44,10 +56,12 @@ function App() {
           </Route>
           <Route element={<AdminLayout />}>
             <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="/Members" element={<Members />} />
+            <Route path="/TestimoniMan" element={<TestimoniMan />} />
             <Route path="/product" element={<Product />} />
             <Route path="/users" element={<Users />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/artikel" element={<Artikel />} />
+            <Route path="/faq-admin" element={<FaqAdmin />} />
           </Route>
         </Routes>
     </Suspense>

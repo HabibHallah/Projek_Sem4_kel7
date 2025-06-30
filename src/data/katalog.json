@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "nama": "Lipstik Matte",
+    "gambar": "https://i.pinimg.com/736x/74/2f/a2/742fa25d3057c0620bb6893ebfcfe1be.jpg"
+  },
+  {
+    "id": 2,
+    "nama": "Loose Powder",
+    "gambar": "https://i.pinimg.com/736x/5b/ec/e5/5bece5be33accefa1bcc10c0df1d68f9.jpg"
+  },
+  {
+    "id": 3,
+    "nama": "Eyeliner Waterproof",
+    "gambar": "https://i.pinimg.com/736x/41/1f/11/411f11055916b868694b14ccbb2035d8.jpg"
+  },
+  {
+    "id": 4,
+    "nama": "Maskara Volume",
+    "gambar": "https://i.pinimg.com/736x/8c/00/1f/8c001f5c37f7444632fc89be140db93c.jpg"
+  },
+  {
+    "id": 5,
+    "nama": "Foundation Natural",
+    "gambar": "https://i.pinimg.com/736x/e1/11/79/e111790afaf5fc71377a17b0656fff17.jpg"
+  },
+  {
+    "id": 6,
+    "nama": "Blush On Pink",
+    "gambar": "https://i.pinimg.com/736x/58/cc/1e/58cc1e49de63584aebf4d9d3ab319d04.jpg"
+  },
+  {
+    "id": 7,
+    "nama": "Eyeshadow Palette",
+    "gambar": "https://i.pinimg.com/736x/4a/89/fb/4a89fb7260da5fbfe8028b0704511d2c.jpg"
+  },
+  {
+    "id": 8,
+    "nama": "Setting Spray",
+    "gambar": "https://i.pinimg.com/736x/b3/18/21/b3182142daafbf33815f1e1a1221b3f1.jpg"
+  },
+  {
+    "id": 9,
+    "nama": "Pensil Alis",
+    "gambar": "https://i.pinimg.com/736x/d5/29/3e/d5293eeae603d589b7eb5aaaf134e859.jpg"
+  },
+  {
+    "id": 10,
+    "nama": "BB Cream Glow",
+    "gambar": "https://i.pinimg.com/736x/db/97/e4/db97e4fc60993b59af66a62e2f15677a.jpg"
+  },
+  {
+    "id": 11,
+    "nama": "Highlighter Gold",
+    "gambar": "https://i.pinimg.com/736x/8e/63/18/8e6318e9b4e27762d48985184dc6a5f0.jpg"
+  },
+  {
+    "id": 12,
+    "nama": "Compact Powder",
+    "gambar": "https://i.pinimg.com/736x/76/81/7e/76817ebe90ccac55b8bcd81f10e6338b.jpg"
+  },
+  {
+    "id": 13,
+    "nama": "Lip Balm Mint",
+    "gambar": "https://i.pinimg.com/736x/d7/b9/16/d7b916741ef13c86b607826c84aeb25e.jpg"
+  },
+  {
+    "id": 14,
+    "nama": "Lip Gloss Shiny",
+    "gambar": "https://i.pinimg.com/736x/d1/cf/91/d1cf9112cb1a80017d3aaae3c584a11e.jpg"
+  },
+  {
+    "id": 15,
+    "nama": "Eyebrow Gel",
+    "gambar": "https://i.pinimg.com/736x/76/9c/07/769c07bea21590905ea0e3044cf377bd.jpg"
+  },
+  {
+    "id": 16,
+    "nama": "Primer Smooth",
+    "gambar": "https://i.pinimg.com/736x/7b/9a/53/7b9a538dc40eafa760d8daa589432868.jpg"
+  },
+  {
+    "id": 17,
+    "nama": "Makeup Remover",
+    "gambar": "https://i.pinimg.com/736x/8a/e6/5f/8ae65f1ab35fe02d619d8b1ac784f80e.jpg"
+  },
+  {
+    "id": 18,
+    "nama": "Contour Stick",
+    "gambar": "https://i.pinimg.com/736x/2b/89/44/2b894411c50324af94aa363bcd4dfddf.jpg"
+  },
+  {
+    "id": 19,
+    "nama": "Nail Polish Red",
+    "gambar": "https://i.pinimg.com/736x/db/ea/30/dbea309afaf85ca7d5124ad432972396.jpg"
+  },
+  {
+    "id": 20,
+    "nama": "Facial Mist",
+    "gambar": "https://i.pinimg.com/736x/cc/74/d5/cc74d5b6c0b7daadb1ce01e2cdeceda6.jpg"
+  },
+  {
+    "id": 21,
+    "nama": "Toner Refresh",
+    "gambar": "https://i.pinimg.com/736x/90/9c/b9/909cb9bd8f3b8c30a0164672ecc1d90b.jpg"
+  },
+  {
+    "id": 22,
+    "nama": "Serum Vitamin C",
+    "gambar": "https://i.pinimg.com/736x/e4/ba/a7/e4baa7da4b95bc9b0c1bee44b47d2f28.jpg"
+  },
+  {
+    "id": 23,
+    "nama": "Cleansing Oil",
+    "gambar": "https://i.pinimg.com/736x/df/ef/66/dfef66af1a574d7e8691c7964cae64af.jpg"
+  },
+  {
+    "id": 24,
+    "nama": "Face Oil Glow",
+    "gambar": "https://i.pinimg.com/736x/4d/31/a3/4d31a309fcc657432761840e0d1a24ff.jpg"
+  },
+  {
+    "id": 25,
+    "nama": "Eye Cream Bright",
+    "gambar": "https://i.pinimg.com/736x/8e/06/db/8e06db885035cb731d2879705be54d7a.jpg"
+  },
+  {
+    "id": 26,
+    "nama": "Moisturizer Daily",
+    "gambar": "https://i.pinimg.com/736x/da/8c/1b/da8c1b031e5dc48853ce6fc990a2a6dc.jpg"
+  },
+  {
+    "id": 27,
+    "nama": "Beauty Blender",
+    "gambar": "https://i.pinimg.com/736x/fd/87/cd/fd87cd44e7797142252cea9dd7e40825.jpg"
+  },
+  {
+    "id": 28,
+    "nama": "Lip Scrub Natural",
+    "gambar": "https://i.pinimg.com/736x/ff/47/3d/ff473dd579221eb2346e4fe158aed686.jpg"
+  }
+]

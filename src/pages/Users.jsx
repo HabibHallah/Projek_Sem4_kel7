@@ -1,25 +1,35 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { userAPI } from "../assets/services/userAPI";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalUsers, setTotalUsers] = useState(0);
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    const offset = (currentPage - 1) * itemsPerPage;
-    userAPI
-      .fetchUsers(offset, itemsPerPage)
-      .then(({ data, total }) => {
-        setUsers(data);
-        setTotalUsers(total);
-      })
-      .catch((err) => console.error("Failed to fetch users:", err));
-  }, [currentPage]);
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search).get("search")?.toLowerCase() || "";
 
+  useEffect(() => {
+    // Tidak perlu offset karena filter dilakukan di client-side
+    userAPI
+      .fetchUsers(0, 1000) // ambil banyak user sekaligus
+      .then(({ data }) => setUsers(data))
+      .catch((err) => console.error("Failed to fetch users:", err));
+  }, []);
+
+  // Filter users berdasarkan nama / email / role
+  const filteredUsers = users.filter(
+    (u) =>
+      u.nama.toLowerCase().includes(searchQuery) ||
+      u.email.toLowerCase().includes(searchQuery) ||
+      u.role.toLowerCase().includes(searchQuery)
+  );
+
+  const totalUsers = filteredUsers.length;
   const totalPages = Math.ceil(totalUsers / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedUsers = filteredUsers.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="p-6">
@@ -32,19 +42,15 @@ export default function Users() {
               <th className="px-3 py-2 text-left">#</th>
               <th className="px-3 py-2 text-left">Name</th>
               <th className="px-3 py-2 text-left">Email</th>
-              <th className="px-3 py-2 text-left">Phone</th>
-              <th className="px-3 py-2 text-left">Username</th>
               <th className="px-3 py-2 text-left">Role</th>
             </tr>
           </thead>
           <tbody className="text-gray-800">
-            {users.map((user, index) => (
+            {paginatedUsers.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-50 border-t">
                 <td className="px-3 py-2">{startIndex + index + 1}</td>
                 <td className="px-3 py-2">{user.nama}</td>
                 <td className="px-3 py-2">{user.email}</td>
-                <td className="px-3 py-2">{user.phone || "-"}</td>
-                <td className="px-3 py-2">{user.username || "-"}</td>
                 <td className="px-3 py-2">{user.role}</td>
               </tr>
             ))}

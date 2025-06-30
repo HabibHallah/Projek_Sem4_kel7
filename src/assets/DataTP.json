@@ -3,18 +3,72 @@
     "id": 1,
     "name": "Toner",
     "price": 78000,
-    "image": "./img/produk1.png"
+    "image": "https://i.pinimg.com/736x/4b/1d/a9/4b1da931a6d67bea6c9db2d2fab8d809.jpg"
   },
   {
     "id": 2,
     "name": "Serum Pelembab",
     "price": 34000,
-    "image": "./img/produk2.jpeg"
+    "image": "https://i.pinimg.com/736x/e7/a7/c1/e7a7c19782d61b9a0f59ceda7ea1b680.jpg"
   },
   {
     "id": 3,
     "name": "Sun Screen",
     "price": 14500,
-    "image": "./img/produk3.jpeg"
+    "image": "https://i.pinimg.com/736x/84/d4/c1/84d4c1be4e6e6a075f7f5c9ee0a64410.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Facial Wash",
+    "price": 27000,
+    "image": "https://i.pinimg.com/736x/dd/15/a0/dd15a028237ce927caac61e22ee95f11.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Moisturizer Gel",
+    "price": 39000,
+    "image": "https://i.pinimg.com/736x/bf/af/0a/bfaf0a07f42cacc72efd60b2edf0221b.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Cleansing Balm",
+    "price": 55000,
+    "image": "https://i.pinimg.com/736x/51/80/37/5180376454b0620ae6f769e0e52a75e0.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Exfoliating Toner",
+    "price": 42000,
+    "image": "https://i.pinimg.com/736x/c9/5d/3d/c95d3d94779cbf9b53aa9fc9b37246cf.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Night Cream",
+    "price": 61000,
+    "image": "https://i.pinimg.com/736x/bd/0a/d9/bd0ad9a165952eca713012e20737d464.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Lip Balm",
+    "price": 12500,
+    "image": "https://i.pinimg.com/736x/5c/10/95/5c109598d6b9490c781b03e3bd095dbd.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Eye Cream",
+    "price": 47000,
+    "image": "https://i.pinimg.com/736x/35/b5/dd/35b5ddbe2cd38058997e05b9c835e597.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Face Mist",
+    "price": 36500,
+    "image": "https://i.pinimg.com/736x/91/07/d3/9107d33e228cbd6b9607e0a2dfac29ed.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Clay Mask",
+    "price": 58000,
+    "image": "https://i.pinimg.com/736x/6c/fd/1a/6cfd1aeb0d1404825a862ed27d14b167.jpg"
   }
 ]

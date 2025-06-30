@@ -18,21 +18,29 @@ export default function ListMenu() {
         <RiDashboardFill className="text-xl" />
         <span>Dashboard</span>
       </NavLink>
-      <NavLink to="/Members" className={menuClass}>
-        <FaFileAlt className="text-xl" />
-        <span>Members</span>
-      </NavLink>
       <NavLink to="/Product" className={menuClass}>
         <FaBox className="text-xl" />
-        <span>Product</span>
+        <span>Manajemen Produk</span>
       </NavLink>
       <NavLink to="/Users" className={menuClass}>
         <FaBox className="text-xl" />
-        <span>Users</span>
+        <span>Pengguna</span>
       </NavLink>
       <NavLink to="/Orders" className={menuClass}>
         <MdSubscriptions className="text-xl" />
-        <span>Orders</span>
+        <span>Manajemen Pesanan</span>
+      </NavLink>
+      <NavLink to="/TestimoniMan" className={menuClass}>
+        <FaFileAlt className="text-xl" />
+        <span>Manajemen Testimoni</span>
+      </NavLink>
+      <NavLink to="/Artikel" className={menuClass}>
+        <FaFileAlt className="text-xl" />
+        <span>Manajemen Artikel</span>
+      </NavLink>
+      <NavLink to="/faq-admin" className={menuClass}>
+        <AiFillHeart className="text-xl" />
+        <span>Manajemen FAQ</span>
       </NavLink>
     </nav>
   );

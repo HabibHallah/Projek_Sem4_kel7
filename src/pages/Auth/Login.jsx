@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { ImSpinner2 } from "react-icons/im";
-import { userAPI } from "../../assets/services/userAPI"; // ← Sesuaikan path import
+import { userAPI } from "../../assets/services/userAPI";
+import Swal from "sweetalert2";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -13,42 +14,55 @@ export default function Login() {
     password: "",
   });
 
-  const handleChange = (evt) => {
-    const { name, value } = evt.target;
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDataForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  setError("");
+    e.preventDefault();
+    setLoading(true);
+    setError("");
 
-  try {
-    const result = await userAPI.fetchUser(dataForm.email, dataForm.password);
+    try {
+      const result = await userAPI.fetchUser(dataForm.email, dataForm.password);
 
-    if (result.length === 0) {
-      setError("Email atau password salah.");
-    } else {
-      const user = result[0]; // ambil user pertama
+      if (!result || result.length === 0) {
+        setError("Email atau password salah.");
+        return;
+      }
+
+      const user = result[0];
+
+      if (!user.id) {
+        setError("Data user tidak valid.");
+        return;
+      }
+
+      // ✅ Simpan data ke sessionStorage
+      sessionStorage.setItem("userLoggedIn", "true");
+      sessionStorage.setItem("userRole", user.role || "");
+      sessionStorage.setItem("userEmail", user.email || "");
+      sessionStorage.setItem("userNama", user.nama || "");
+      sessionStorage.setItem("user_id", String(user.id)); // simpan sebagai string
+
+      Swal.fire("Berhasil!", "Login berhasil", "success");
+
+      // Arahkan ke halaman sesuai role
       if (user.role === "admin") {
         navigate("/dashboard");
       } else if (user.role === "customer") {
         navigate("/");
       } else {
-        setError(`Role "${user.role}" tidak valid.`);
+        setError(`Role "${user.role}" tidak dikenali.`);
       }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Login gagal. Periksa koneksi atau data.");
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error(err);
-    setError("Login gagal. Pastikan API aktif dan data benar.");
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="bg-white p-8 rounded-2xl w-full max-w-sm">
@@ -65,7 +79,7 @@ export default function Login() {
       {loading && (
         <div className="bg-gray-100 text-gray-700 p-3 rounded flex items-center mb-4 text-sm">
           <ImSpinner2 className="mr-2 animate-spin" />
-          Please wait...
+          Mohon tunggu...
         </div>
       )}
 

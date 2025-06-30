@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 
 export default function AuthLayout() {
   return (
-    <div className="min-h-screen flex bg-gradient-to-r from-pink-190 to-pink-290 text-white">
+    <div className="min-h-screen flex bg-gradient-to-r from-pink-190 to-pink-290 text-black">
       {/* LEFT ILLUSTRATION */}
       <div className="w-1/2 hidden md:flex items-center justify-center relative p-10">
         <img

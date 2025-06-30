@@ -1,155 +1,124 @@
-import React from "react";
-import testimonials from "../assets/testimoni.json";
-import { AiFillStar } from "react-icons/ai";
+import { useEffect, useState } from "react";
+import { testimoniAPI } from "../assets/services/testimoniAPI";
+import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 
-// Variasi typing animation pada heading
-const typingText = {
-  hidden: { opacity: 0, x: -10 },
-  visible: (i) => ({
-    opacity: 1,
-    x: 0,
-    transition: { delay: i * 0.04 },
-  }),
-};
-
 export default function Testimoni() {
-  const kata = "Apa kata mereka tentang Beautiva ✨".split("");
+  const [testimoniList, setTestimoniList] = useState([]);
+  const [newTestimoni, setNewTestimoni] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const userId = sessionStorage.getItem("user_id");
+
+  useEffect(() => {
+    fetchTestimoni();
+  }, []);
+
+  const fetchTestimoni = async () => {
+    try {
+      setLoading(true);
+      const { data } = await testimoniAPI.fetchTestimoni(0, 100);
+      setTestimoniList(data);
+    } catch (error) {
+      console.error("Gagal memuat testimoni:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!userId) {
+      Swal.fire("Oops!", "Kamu harus login terlebih dahulu.", "warning");
+      return;
+    }
+
+    if (!newTestimoni.trim()) {
+      Swal.fire("Oops!", "Testimoni tidak boleh kosong.", "warning");
+      return;
+    }
+
+    try {
+      await testimoniAPI.createTestimoni({
+        user_id: parseInt(userId),
+        testimoni: newTestimoni,
+      });
+      Swal.fire("Berhasil!", "Testimoni kamu telah dikirim.", "success");
+      setNewTestimoni("");
+      fetchTestimoni();
+    } catch (error) {
+      console.error("Gagal mengirim testimoni:", error);
+      Swal.fire("Error", "Gagal mengirim testimoni.", "error");
+    }
+  };
 
   return (
-    <section
-      className="relative bg-gradient-to-br from-pink-50 via-pink-100 to-white overflow-hidden py-16 px-6"
-      style={{
-        backgroundAttachment: "fixed",
-        backgroundImage:
-          "linear-gradient(to bottom right, #ffe4e6, #fff1f2, #ffffff)",
-      }}
+    <motion.div
+      className="max-w-3xl mx-auto px-4 py-10"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
     >
-      {/* Animated decorative blobs (bergerak) */}
-      <motion.div
-        animate={{ x: [0, 20, 0], y: [0, -10, 0] }}
-        transition={{ repeat: Infinity, duration: 10 }}
-        className="absolute top-0 left-0 w-64 h-64 bg-pink-200 opacity-40 rounded-full filter blur-3xl"
-      ></motion.div>
-
-      <motion.div
-        animate={{ x: [0, -20, 0], y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 12 }}
-        className="absolute bottom-0 right-0 w-96 h-96 bg-green-200 opacity-30 rounded-full filter blur-2xl"
-      ></motion.div>
-
-      {/* Judul animasi */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="relative max-w-6xl mx-auto text-center mb-6"
+      <motion.h1
+        className="text-2xl font-bold text-pink-600 mb-6 text-center"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
       >
-        <h2 className="text-3xl font-bold text-green-600 mb-2">Testimoni 💬</h2>
-        <p className="text-lg text-gray-600 flex justify-center flex-wrap">
-          {kata.map((char, i) => (
-            <motion.span key={i} custom={i} variants={typingText}>
-              {char}
-            </motion.span>
-          ))}
-        </p>
-      </motion.div>
+        Testimoni Pelanggan
+      </motion.h1>
 
-      {/* Ringkasan Rating */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-center text-sm text-gray-500 mb-8"
+      {/* Form Testimoni */}
+      <motion.form
+        onSubmit={handleSubmit}
+        className="mb-8 bg-pink-50 p-4 rounded-xl shadow"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
       >
-        ⭐ 4.9 dari 5 — Berdasarkan lebih dari 100+ review pelanggan puas
-      </motion.div>
+        <textarea
+          value={newTestimoni}
+          onChange={(e) => setNewTestimoni(e.target.value)}
+          className="w-full h-24 p-3 border border-pink-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-pink-400"
+          placeholder="Tulis testimoni kamu di sini..."
+        ></textarea>
+        <div className="flex justify-end mt-3">
+          <motion.button
+            type="submit"
+            className="bg-pink-500 text-white px-5 py-2 rounded-md hover:bg-pink-600 transition"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Tulis Testimoni Kamu
+          </motion.button>
+        </div>
+      </motion.form>
 
-      {/* Card Testimoni */}
-      <div className="relative max-w-6xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {testimonials.map(
-          ({ id, name, avatar, review, rating, product, platform, video }) => (
+      {/* List Testimoni */}
+      {loading ? (
+        <p className="text-center text-gray-500">Memuat testimoni...</p>
+      ) : testimoniList.length === 0 ? (
+        <p className="text-center text-gray-400">Belum ada testimoni.</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {testimoniList.map((item, i) => (
             <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 50 }}
+              key={item.id}
+              className="bg-white p-4 rounded-xl border shadow-sm hover:shadow-md transition"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: id * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 12px 20px rgba(0,0,0,0.1)",
-              }}
-              className="bg-white rounded-2xl p-6 shadow-md transition-transform relative flex flex-col items-center text-center"
+              transition={{ duration: 0.3, delay: i * 0.05 }}
             >
-              {/* Avatar atau Video */}
-              {video ? (
-                <video
-                  src={video}
-                  controls
-                  className="w-full rounded-xl mb-4 object-cover max-h-52"
-                />
-              ) : (
-                <img
-                  src={avatar}
-                  alt={name}
-                  className="w-20 h-20 rounded-full mb-4 ring-4 ring-pink-100 object-cover"
-                />
-              )}
-
-              {/* Bintang */}
-              <div className="flex items-center space-x-1 mb-2">
-                {Array(rating || 5)
-                  .fill()
-                  .map((_, i) => (
-                    <AiFillStar key={i} className="text-yellow-400" />
-                  ))}
-              </div>
-
-              {/* Nama */}
-              <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-
-              {/* Badge */}
-              <div className="flex flex-col items-center gap-1 text-xs text-gray-500 mt-1 mb-2">
-                <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded-full">
-                  ✅ Pelanggan Terverifikasi
-                </span>
-                {product && (
-                  <span className="bg-pink-100 text-pink-600 px-2 py-0.5 rounded-full">
-                    🧴 Produk: {product}
-                  </span>
-                )}
-                {platform && (
-                  <span className="bg-yellow-100 text-yellow-600 px-2 py-0.5 rounded-full">
-                    🛍️ Pembelian melalui {platform}
-                  </span>
-                )}
-              </div>
-
-              {/* Review */}
-              <p className="mt-2 text-gray-600 text-sm leading-relaxed relative px-4">
-                <span className="absolute -top-2 -left-2 text-pink-300 text-2xl">
-                  “
-                </span>
-                {review} <span className="text-pink-400">💖</span>
-                <span className="absolute -bottom-2 -right-2 text-pink-300 text-2xl">
-                  ”
-                </span>
+              <p className="text-gray-700 italic">"{item.testimoni}"</p>
+              <p className="text-sm text-right text-gray-500 mt-2">
+                Oleh: {item.users?.nama || `User ID: ${item.user_id}`}
               </p>
             </motion.div>
-          )
-        )}
-      </div>
-
-      {/* CTA */}
-      <div className="text-center mt-10">
-        <a
-          href="/form-testimoni"
-          className="inline-block bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full text-sm font-medium shadow transition"
-        >
-          ✍️ Tulis Testimoni Kamu
-        </a>
-      </div>
-    </section>
+          ))}
+        </div>
+      )}
+    </motion.div>
   );
 }

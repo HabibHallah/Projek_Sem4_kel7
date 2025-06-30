@@ -8,7 +8,7 @@ export default function Sidebar() {
         <h1 className="text-3xl font-extrabold mb-12">Beautiva</h1>
         <ListMenu />
       </div>
-      <div className="bg-white text-[#E56AB3] rounded-2xl p-4 text-center shadow-md">
+      <div className="bg-white text-[#E56AB3] rounded-2xl p-4 text-center shadow-md mt-4">
         <FaRocket className="text-3xl mx-auto mb-2" />
         <p className="mb-2 font-medium">Upgrade Sekarang</p>
         <button className="bg-[#E56AB3] text-white px-4 py-2 rounded-xl hover:bg-[#D42E70] transition">

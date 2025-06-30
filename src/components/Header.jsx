@@ -1,19 +1,33 @@
 import { useState, useRef, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { FaSearch, FaSignOutAlt } from "react-icons/fa";
 import { HiBell } from "react-icons/hi";
 
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const dropdownRef = useRef();
 
+  // ambil query search dari URL
+  const searchQuery = new URLSearchParams(location.search).get("search") || "";
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    const params = new URLSearchParams(location.search);
+    if (value) {
+      params.set("search", value);
+    } else {
+      params.delete("search");
+    }
+    navigate(`${location.pathname}?${params.toString()}`);
+  };
+
   const handleLogout = () => {
-    // Tambahkan logika logout jika perlu
     navigate("/");
   };
 
-  // Tutup dropdown saat klik di luar
+  // tutup dropdown kalau klik di luar
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -35,6 +49,8 @@ export default function Header() {
         <div className="relative">
           <input
             type="text"
+            value={searchQuery}
+            onChange={handleSearchChange}
             placeholder="Search"
             className="rounded-full pl-10 pr-4 py-2 bg-white shadow text-sm focus:outline-none"
           />
@@ -53,7 +69,6 @@ export default function Header() {
             onClick={() => setDropdownOpen(!dropdownOpen)}
           />
 
-          {/* Dropdown */}
           {dropdownOpen && (
             <div className="absolute right-0 mt-2 w-56 bg-white shadow-xl rounded-xl overflow-hidden z-50 animate-fade-in-up">
               <div className="px-5 py-4 border-b text-sm text-gray-800 font-medium bg-gray-50">

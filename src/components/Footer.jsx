@@ -20,7 +20,7 @@ const Footer = () => {
               </p>
               <p className="flex items-center text-gray-600">
                 <i className="fas fa-envelope mr-3"></i>
-                sedap@gmail.com
+                beautiva@gmail.com
               </p>
               <p className="flex items-center text-gray-600">
                 <i className="fas fa-clock mr-3"></i>
@@ -34,19 +34,19 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-800">Sosial Media</h3>
             <p className="text-gray-600">Ikuti kami di media sosial untuk info terbaru</p>
             <div className="flex space-x-4">
-              <a href="https://facebook.com/Sedap." target="_blank" rel="noopener noreferrer" 
+              <a href="https://facebook.com/Beautiva" target="_blank" rel="noopener noreferrer" 
                  className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition">
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="https://twitter.com/Sedap." target="_blank" rel="noopener noreferrer" 
+              <a href="https://twitter.com/Beautiva" target="_blank" rel="noopener noreferrer" 
                  className="bg-blue-400 text-white p-2 rounded-full hover:bg-blue-500 transition">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="https://instagram.com/Sedap_id" target="_blank" rel="noopener noreferrer" 
+              <a href="https://instagram.com/Beautiva_id" target="_blank" rel="noopener noreferrer" 
                  className="bg-pink-600 text-white p-2 rounded-full hover:bg-pink-700 transition">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://youtube.com/c/Sedap." target="_blank" rel="noopener noreferrer" 
+              <a href="https://youtube.com/c/Beautiva" target="_blank" rel="noopener noreferrer" 
                  className="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 transition">
                 <i className="fab fa-youtube"></i>
               </a>
@@ -58,38 +58,38 @@ const Footer = () => {
           </div>
 
           {/* Gambar Partner */}
-            <div className="space-y-4">
+          <div className="space-y-4">
             <h3 className="text-lg font-semibold text-gray-800">Partner Kami</h3>
             <div className="space-y-3">
-                {[
+              {[
                 {
-                    logo: "./img/Gojek.jpg",
-                    name: "Gojek Food",
-                    alt: "Partner 1"
+                  logo: "./img/Gojek.jpg",
+                  name: "Gojek Food",
+                  alt: "Partner 1"
                 },
                 {
-                    logo: "./img/shopee.jpg",
-                    name: "Shopee Food", 
-                    alt: "Partner 2"
+                  logo: "./img/shopee.jpg",
+                  name: "Shopee Food", 
+                  alt: "Partner 2"
                 }
-                ].map((partner, index) => (
+              ].map((partner, index) => (
                 <div key={index} className="flex items-center gap-3 p-2 hover:bg-gray-50 rounded-lg transition">
-                    <img 
+                  <img 
                     src={partner.logo}
                     alt={partner.alt}
                     className="h-10 w-10 object-cover rounded-full border border-gray-200"
-                    />
-                    <span className="text-sm font-medium text-gray-700">{partner.name}</span>
+                  />
+                  <span className="text-sm font-medium text-gray-700">{partner.name}</span>
                 </div>
-                ))}
+              ))}
             </div>
-            </div>
+          </div>
         </div>
 
         {/* Copyright Section */}
         <div className="border-t border-gray-200 pt-6 flex flex-col md:flex-row items-center justify-between">
           <div className="text-sm text-gray-500 mb-4 md:mb-0">
-            <p>© {new Date().getFullYear()} Sedap. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} Beautiva. All rights reserved.</p>
           </div>
           
           <div className="flex space-x-6">
