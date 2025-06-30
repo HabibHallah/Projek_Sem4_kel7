@@ -1,4 +1,3 @@
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { productAPI } from "../assets/services/productAPI";
 import { orderAPI } from "../assets/services/orderAPI";
