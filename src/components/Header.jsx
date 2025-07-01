@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaSearch, FaSignOutAlt } from "react-icons/fa";
-import { HiBell } from "react-icons/hi2";
+import { HiBell } from "react-icons/hi";
 
 export default function Header() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
